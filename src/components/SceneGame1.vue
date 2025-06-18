@@ -1,18 +1,42 @@
 <script setup>
+import { useScene1Store } from '../stores/Scene1store.js'
+defineEmits(['koniec-gry']);
+
+const store = useScene1Store()
+
+function odpowiedz1akcja() {
+  store.changeAkcja1();
+}
+
+function odpowiedz2akcja() {
+  store.changeAkcja2();
+}
+
+function odpowiedz3akcja() {
+  store.changeAkcja3();
+}
+
+function odpowiedz4akcja() {
+  store.changeAkcja4();
+}
+
+
 
 </script>
 
 <template>
   <div class="tlo">
     <div class="pytanie"></div>
-    <button class="odpowiedz odpowiedz1"></button>
-    <button class="odpowiedz odpowiedz2"></button>
-    <button class="odpowiedz odpowiedz3"></button>
-    <button class="odpowiedz odpowiedz4"></button>
+    <div class="plansza-wygrana" v-if="store.isAnswerGood"></div>
+    <div class="plansza-przegrana" v-if="store.isAnswerBad"></div>
+    <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja"></button>
+    <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja"></button>
+    <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja"></button>
+    <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja"></button>
 
-    <button class="play-again"></button>
+    <button class="play-again" @click="$emit('koniec-gry')"></button>
     <div class="punktacja">
-      <p class="czas">Czas na odpowiedź: 8</p>  
+      <p class="czas">Czas na odpowiedź: 8</p>
     </div>
     <div class="ramka-punkty"></div>
   </div>
@@ -69,7 +93,7 @@
   position: absolute;
 }
 
-.odpowiedz{
+.odpowiedz {
   background-size: 455px 95px;
   background-position: -7px -9px;
   background-repeat: no-repeat;
@@ -77,13 +101,13 @@
   border-width: 3px;
   border-style: solid;
   border-color: white;
-  height:81px;
-  width:440px;
+  height: 81px;
+  width: 440px;
   position: absolute;
   z-index: 3;
 }
 
-.odpowiedz:hover{
+.odpowiedz:hover {
   cursor: pointer;
 }
 
@@ -91,32 +115,31 @@
   outline: 8px solid #08e926;
 }
 
-.odpowiedz1{
+.odpowiedz1 {
   background-image: url("../assets/odpowiedz1b.png");
   top: 670px;
   left: 140px;
-
 }
 
-.odpowiedz2{
+.odpowiedz2 {
   background-image: url("../assets/odpowiedz2b.png");
   top: 670px;
   left: 640px;
 }
 
-.odpowiedz3{
+.odpowiedz3 {
   background-image: url("../assets/odpowiedz3b.png");
   top: 790px;
   left: 140px;
 }
 
-.odpowiedz4{
+.odpowiedz4 {
   background-image: url("../assets/odpowiedz4b.png");
   top: 790px;
   left: 640px;
 }
 
-.punktacja{
+.punktacja {
   background-image: url("../assets/punktacja_1.png");
   background-size: 1920px 1080px;
   /* background-position: -16px -18px; */
@@ -130,8 +153,8 @@
   position: absolute;
 }
 
-.ramka-punkty{
-    background-image: url("../assets/ramka_punkty1.png");
+.ramka-punkty {
+  background-image: url("../assets/ramka_punkty1.png");
   background-size: 430px 72px;
   /* background-position: -16px -18px; */
   background-repeat: no-repeat;
@@ -144,11 +167,46 @@
   position: absolute;
 }
 
-.czas{
+.czas {
   color: white;
   font-size: 40px;
   position: absolute;
   top: 40px;
   left: 1480px;
+}
+
+.active {
+  backdrop-filter: invert(80%);
+  outline: 8px solid #e90808 !important;
+}
+
+.plansza-wygrana {
+  background-image: url("../assets/answer_good2.png");
+  background-size: 1280px 620px;
+  background-position: -16px -18px;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+
+  height: 620px;
+  width: 1280px;
+  top: 220px;
+  left: 150px;
+  position: absolute;
+  z-index: 2;
+}
+
+.plansza-przegrana {
+  background-image: url("../assets/answer_bad2.png");
+  background-size: 1280px 620px;
+  background-position: -16px -18px;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+
+  height: 620px;
+  width: 1280px;
+  top: 220px;
+  left: 150px;
+  position: absolute;
+  z-index: 2;
 }
 </style>

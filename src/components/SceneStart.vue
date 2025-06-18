@@ -1,11 +1,12 @@
 <script setup>
+defineEmits(['start-gry']);
 
 </script>
 
 <template>
 
 <div class="tlo">
-    <button class="start anim1"></button>
+    <button class="start anim1" @click="$emit('start-gry')"></button>
 </div>
 </template>
 
