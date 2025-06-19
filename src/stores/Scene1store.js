@@ -15,6 +15,8 @@ export const useScene1Store = defineStore("scene1", {
     isAnswerBad: false,
 
     count: 0,
+
+    ifChoice: true,
   }),
   getters: {
     doubleCount: (state) => state.count * 2,
@@ -35,6 +37,7 @@ export const useScene1Store = defineStore("scene1", {
       } else {
         this.isAnswerGood = false;
         this.isAnswerBad = true;
+        this.closeLose();
       }
     },
     changeAkcja2() {
@@ -49,6 +52,7 @@ export const useScene1Store = defineStore("scene1", {
       } else {
         this.isAnswerGood = false;
         this.isAnswerBad = true;
+        this.closeLose();
       }
     },
     changeAkcja3() {
@@ -63,6 +67,7 @@ export const useScene1Store = defineStore("scene1", {
       } else {
         this.isAnswerGood = false;
         this.isAnswerBad = true;
+        this.closeLose();
       }
     },
     changeAkcja4() {
@@ -77,7 +82,22 @@ export const useScene1Store = defineStore("scene1", {
       } else {
         this.isAnswerGood = false;
         this.isAnswerBad = true;
+        this.closeLose();
       }
+    },
+
+    closeWin() {
+      setTimeout(() => {
+        this.isAnswerGood = false;
+        this.ifChoice = true;
+      }, 2000);
+    },
+
+    closeLose() {
+      setTimeout(() => {
+        this.isAnswerBad = false;
+        this.ifChoice = true;
+      }, 2000);
     },
   },
 });

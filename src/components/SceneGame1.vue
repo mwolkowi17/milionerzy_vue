@@ -1,23 +1,62 @@
 <script setup>
 import { useScene1Store } from '../stores/Scene1store.js'
-defineEmits(['koniec-gry']);
+import { ref } from 'vue'
+
+
+const emits = defineEmits(['koniec-gry']);
 
 const store = useScene1Store()
 
+const ifChoice = ref(true)
+
+function afterLoose() {
+  if (store.isAnswerBad) {
+    setTimeout(() => {
+      emits("koniec-gry")
+    }, 2500)
+  }
+}
+
 function odpowiedz1akcja() {
-  store.changeAkcja1();
+  if (store.ifChoice) {
+    store.changeAkcja1()
+    store.ifChoice = false
+    store.closeWin()
+    afterLoose()
+
+  }
+
 }
 
 function odpowiedz2akcja() {
-  store.changeAkcja2();
+  if (store.ifChoice) {
+    store.changeAkcja2()
+    store.ifChoice = false
+    store.closeWin()
+    afterLoose()
+
+  }
 }
 
 function odpowiedz3akcja() {
-  store.changeAkcja3();
+  if (store.ifChoice) {
+    store.changeAkcja3()
+    store.ifChoice = false
+    store.closeWin()
+    afterLoose()
+
+  }
 }
 
 function odpowiedz4akcja() {
-  store.changeAkcja4();
+  if (store.ifChoice) {
+    store.changeAkcja4()
+    store.ifChoice = false
+    store.closeWin()
+    afterLoose()
+
+  }
+
 }
 
 
