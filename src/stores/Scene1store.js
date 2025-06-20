@@ -109,6 +109,11 @@ export const useScene1Store = defineStore("scene1", {
         this.is_Active2 = false;
         this.is_Active3 = false;
         this.is_Active4 = false;
+        this.pytanie = gameData.odpowiedzi[this.count].pytanie;
+        this.answerA = gameData.odpowiedzi[this.count].odpowiedz1;
+        this.answerB = gameData.odpowiedzi[this.count].odpowiedz2;
+        this.answerC = gameData.odpowiedzi[this.count].odpowiedz3;
+        this.answerD = gameData.odpowiedzi[this.count].odpowiedz4;
       }, 2000);
     },
 
