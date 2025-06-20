@@ -3,8 +3,8 @@ import SceneStart from './SceneStart.vue';
 import SceneGame1 from './SceneGame1.vue';
 import { ref } from 'vue';
 
-const ifStart = ref(false);
-const ifSceneGame1=ref(true)
+const ifStart = ref(true);
+const ifSceneGame1=ref(false)
 
 function koniec_gry(){
     ifStart.value=true

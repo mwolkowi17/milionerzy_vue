@@ -9,10 +9,26 @@ const store = useScene1Store()
 
 const ifChoice = ref(true)
 
+function blurFocus(){
+  document.getElementsByClassName("odpowiedz")[0].blur()
+  document.getElementsByClassName("odpowiedz")[1].blur()
+  document.getElementsByClassName("odpowiedz")[2].blur()
+  document.getElementsByClassName("odpowiedz")[3].blur()
+}
+
+function changeActive() {
+  store.is_Active1 = false
+  store.is_Active2 = false
+  store.is_Active3 = false
+  store.is_Active4 = false
+}
+
 function afterLoose() {
   if (store.isAnswerBad) {
     setTimeout(() => {
       emits("koniec-gry")
+      changeActive()
+
     }, 2500)
   }
 }
@@ -23,7 +39,7 @@ function odpowiedz1akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-
+    blurFocus()
   }
 
 }
@@ -34,7 +50,7 @@ function odpowiedz2akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-
+    blurFocus()
   }
 }
 
@@ -44,7 +60,7 @@ function odpowiedz3akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-
+     blurFocus()
   }
 }
 
@@ -54,10 +70,16 @@ function odpowiedz4akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-
+     blurFocus()
   }
-
 }
+
+function endScene(){
+emits("koniec-gry");
+changeActive();
+}
+
+
 
 
 
@@ -65,19 +87,23 @@ function odpowiedz4akcja() {
 
 <template>
   <div class="tlo">
-    <div class="pytanie"></div>
+    <div class="pytanie">
+      <p class="pytanie-paragraf">
+      {{ store.pytanie }}
+      </p>
+    </div>
     <div class="plansza-wygrana" v-if="store.isAnswerGood"></div>
     <div class="plansza-przegrana" v-if="store.isAnswerBad"></div>
-    <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja"></button>
-    <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja"></button>
-    <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja"></button>
-    <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja"></button>
+    <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja">{{ store.answerA }}</button>
+    <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja">{{ store.answerB }}</button>
+    <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja">{{ store.answerC }}</button>
+    <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja">{{ store.answerD }}</button>
 
-    <button class="play-again" @click="$emit('koniec-gry')"></button>
+    <button class="play-again" @click="endScene"></button>
     <div class="punktacja">
       <p class="czas">Czas na odpowiedź: 8</p>
     </div>
-    <div class="ramka-punkty"></div>
+    <div class="ramka-punkty" :style="{ left: store.ramkPuntyX, top: store.ramkPuntyY }"></div>
   </div>
 
 </template>
@@ -124,7 +150,8 @@ function odpowiedz4akcja() {
   background-position: -16px -18px;
   background-repeat: no-repeat;
   border-radius: 20px;
-
+  color: white;
+  font-size: 30px;
   height: 620px;
   width: 1280px;
   top: 220px;
@@ -132,7 +159,14 @@ function odpowiedz4akcja() {
   position: absolute;
 }
 
+.pytanie-paragraf{
+  position: absolute;
+  top: 290px;
+  left: 300px;
+}
+
 .odpowiedz {
+  background-image: url("../assets/odpowiedz1b.png");
   background-size: 455px 95px;
   background-position: -7px -9px;
   background-repeat: no-repeat;
@@ -140,6 +174,8 @@ function odpowiedz4akcja() {
   border-width: 3px;
   border-style: solid;
   border-color: white;
+  color: white;
+  font-size: 30px;
   height: 81px;
   width: 440px;
   position: absolute;
@@ -155,25 +191,25 @@ function odpowiedz4akcja() {
 }
 
 .odpowiedz1 {
-  background-image: url("../assets/odpowiedz1b.png");
+
   top: 670px;
   left: 140px;
 }
 
 .odpowiedz2 {
-  background-image: url("../assets/odpowiedz2b.png");
+  
   top: 670px;
   left: 640px;
 }
 
 .odpowiedz3 {
-  background-image: url("../assets/odpowiedz3b.png");
+
   top: 790px;
   left: 140px;
 }
 
 .odpowiedz4 {
-  background-image: url("../assets/odpowiedz4b.png");
+
   top: 790px;
   left: 640px;
 }
@@ -201,8 +237,8 @@ function odpowiedz4akcja() {
 
   height: 72px;
   width: 430px;
-  top: 870px;
-  left: 1445px;
+  /* top: 870px;
+  left: 1445px; */
   position: absolute;
 }
 

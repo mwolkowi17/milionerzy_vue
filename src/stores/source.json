@@ -1,6 +1,25 @@
 {
   "odpowiedzi": [
-    { "id": "1", "answer": "1" },
-    { "id": "1", "answer": "2" }
+    {
+      "id": "1",
+      "answer": "1",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "870px",
+      "pytanie": "What does suvenir mean?",
+      "odpowiedz1": "pamiątka",
+      "odpowiedz2": "pamiętnik",
+      "odpowiedz3": "wspomnienie",
+      "odpowiedz4": "podróż"
+    },
+    {
+      "id": "2",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "820px",
+      "odpowiedz1": "pamiątka2",
+      "odpowiedz2": "pamiętnik2",
+      "odpowiedz3": "wspomnienie2",
+      "odpowiedz4": "podróż2"
+    }
   ]
 }
