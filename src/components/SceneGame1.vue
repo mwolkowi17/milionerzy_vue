@@ -2,11 +2,13 @@
 import { useScene1Store } from '../stores/Scene1store.js'
 import { ref } from 'vue'
 
-
+//dodać pozycję ramki po starcie sceny
 const emits = defineEmits(['koniec-gry']);
 
 const store = useScene1Store()
 
+//dowód na to, że stan się zmienia
+console.log(store.count)
 const ifChoice = ref(true)
 
 function blurFocus(){
@@ -28,7 +30,7 @@ function afterLoose() {
     setTimeout(() => {
       emits("koniec-gry")
       changeActive()
-
+      store.count=0
     }, 2500)
   }
 }
@@ -77,6 +79,9 @@ function odpowiedz4akcja() {
 function endScene(){
 emits("koniec-gry");
 changeActive();
+store.count=0
+store.ramkPuntyX = "1445px"
+store.ramkPuntyY = "870px"
 }
 
 
