@@ -1,9 +1,17 @@
 <script setup>
+import { useScene1Store } from '../stores/Scene1store.js'
+
+const props = defineProps(['timerData'])
+
+const store = useScene1Store()
+
+
 
 </script>
 
 <template>
-      <p class="czas">Czas na odpowiedź: 8</p>   
+     
+      <p class="czas">Czas na odpowiedź: {{ props.timerData }}</p>   
 </template>
 
 <style scoped>

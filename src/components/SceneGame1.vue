@@ -8,11 +8,17 @@ const emits = defineEmits(['koniec-gry']);
 
 const store = useScene1Store()
 
+
+//store.startTimer()
+
+const timeScene1Local = ref(11)
+
+
 //dowód na to, że stan się zmienia
 console.log(store.count)
 const ifChoice = ref(true)
 
-function blurFocus(){
+function blurFocus() {
   document.getElementsByClassName("odpowiedz")[0].blur()
   document.getElementsByClassName("odpowiedz")[1].blur()
   document.getElementsByClassName("odpowiedz")[2].blur()
@@ -31,7 +37,7 @@ function afterLoose() {
     setTimeout(() => {
       emits("koniec-gry")
       changeActive()
-      store.count=0
+      store.count = 0
     }, 2500)
   }
 }
@@ -63,7 +69,7 @@ function odpowiedz3akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-     blurFocus()
+    blurFocus()
   }
 }
 
@@ -73,19 +79,33 @@ function odpowiedz4akcja() {
     store.ifChoice = false
     store.closeWin()
     afterLoose()
-     blurFocus()
+    blurFocus()
   }
 }
 
-function endScene(){
-emits("koniec-gry");
-changeActive();
-store.count=0
-store.ramkPuntyX = "1445px"
-store.ramkPuntyY = "870px"
+function endScene() {
+  emits("koniec-gry");
+  changeActive();
+  store.count = 0
+  store.ramkPuntyX = "1445px"
+  store.ramkPuntyY = "870px"
 }
 
+function startTimer() {
+  timeScene1Local.value = 12; // Reset the timer to 10 seconds
+  const interval = setInterval(() => {
+    if (timeScene1Local.value > 0) {
+      timeScene1Local.value--;
+    } else {
+      clearInterval(interval);
+      console.log("Time's up!");
+      endScene()
+      //this.closeLose(); // Call closeLose when time runs out
+    }
+  }, 1000);
+}
 
+startTimer()
 
 
 
@@ -95,20 +115,24 @@ store.ramkPuntyY = "870px"
   <div class="tlo">
     <div class="pytanie">
       <p class="pytanie-paragraf">
-      {{ store.pytanie }}
+        {{ store.pytanie }}
       </p>
     </div>
     <div class="plansza-wygrana" v-if="store.isAnswerGood"></div>
     <div class="plansza-przegrana" v-if="store.isAnswerBad"></div>
-    <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja">{{ store.answerA }}</button>
-    <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja">{{ store.answerB }}</button>
-    <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja">{{ store.answerC }}</button>
-    <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja">{{ store.answerD }}</button>
+    <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja">{{ store.answerA
+      }}</button>
+    <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja">{{ store.answerB
+      }}</button>
+    <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja">{{ store.answerC
+      }}</button>
+    <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja">{{ store.answerD
+      }}</button>
 
     <button class="play-again" @click="endScene"></button>
     <div class="punktacja">
-      <!-- <p class="czas">Czas na odpowiedź: 8</p> -->
-       <TimeCounter />
+      <p class="czas">Czas na odpowiedź: {{ timeScene1Local }}</p>
+      <!-- <TimeCounter :timerData=store.timeScene1 /> -->
     </div>
     <div class="ramka-punkty" :style="{ left: store.ramkPuntyX, top: store.ramkPuntyY }"></div>
   </div>
@@ -166,7 +190,7 @@ store.ramkPuntyY = "870px"
   position: absolute;
 }
 
-.pytanie-paragraf{
+.pytanie-paragraf {
   position: absolute;
   top: 290px;
   left: 300px;
@@ -204,7 +228,7 @@ store.ramkPuntyY = "870px"
 }
 
 .odpowiedz2 {
-  
+
   top: 670px;
   left: 640px;
 }

@@ -26,6 +26,8 @@ export const useScene1Store = defineStore("scene1", {
     answerB: gameData.odpowiedzi[0].odpowiedz2,
     answerC: gameData.odpowiedzi[0].odpowiedz3,
     answerD: gameData.odpowiedzi[0].odpowiedz4,
+
+    //timeScene1: 10, // czas na odpowiedź w scenie 1
   }),
   getters: {
     doubleCount: (state) => state.count * 2,
@@ -123,5 +125,18 @@ export const useScene1Store = defineStore("scene1", {
         this.ifChoice = true;
       }, 2000);
     },
+
+    // startTimer() {
+    //   this.timeScene1 = 10; // Reset the timer to 10 seconds
+    //   const interval = setInterval(() => {
+    //     if (this.timeScene1 > 0) {
+    //       this.timeScene1--;
+    //     } else {
+    //       clearInterval(interval);
+    //       console.log("Time's up!");
+    //       //this.closeLose(); // Call closeLose when time runs out
+    //     }
+    //   }, 1000);
+    // },
   },
 });
