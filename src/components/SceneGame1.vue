@@ -1,6 +1,7 @@
 <script setup>
 import { useScene1Store } from '../stores/Scene1store.js'
 import { ref } from 'vue'
+import TimeCounter from './TimeCounter.vue';
 
 //dodać pozycję ramki po starcie sceny
 const emits = defineEmits(['koniec-gry']);
@@ -106,7 +107,8 @@ store.ramkPuntyY = "870px"
 
     <button class="play-again" @click="endScene"></button>
     <div class="punktacja">
-      <p class="czas">Czas na odpowiedź: 8</p>
+      <!-- <p class="czas">Czas na odpowiedź: 8</p> -->
+       <TimeCounter />
     </div>
     <div class="ramka-punkty" :style="{ left: store.ramkPuntyX, top: store.ramkPuntyY }"></div>
   </div>
