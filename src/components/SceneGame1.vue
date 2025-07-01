@@ -40,7 +40,7 @@ function afterLoose() {
       emits("koniec-gry")
       changeActive()
       store.count = 0
-    }, 2500)
+    }, 1900)
   }
 }
 
