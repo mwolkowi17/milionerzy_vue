@@ -8,7 +8,9 @@ const emits = defineEmits(['koniec-gry']);
 
 const store = useScene1Store()
 
+const ifTimerVisible = ref(true)
 
+const ifTimeFirstTime = ref(true)
 //store.startTimer()
 
 const timeScene1Local = ref(11)
@@ -49,6 +51,13 @@ function odpowiedz1akcja() {
     store.closeWin()
     afterLoose()
     blurFocus()
+    ifTimerOn.value = false
+    ifTimerVisible.value = false
+    setTimeout(() => {
+      timeScene1Local.value = 10;
+      ifTimerVisible.value = true
+      ifTimerOn.value = true
+    }, 2000)
   }
 
 }
@@ -60,6 +69,13 @@ function odpowiedz2akcja() {
     store.closeWin()
     afterLoose()
     blurFocus()
+    ifTimerOn.value = false
+    ifTimerVisible.value = false
+    setTimeout(() => {
+      timeScene1Local.value = 10;
+      ifTimerVisible.value = true
+      ifTimerOn.value = true
+    }, 2000)
   }
 }
 
@@ -70,6 +86,13 @@ function odpowiedz3akcja() {
     store.closeWin()
     afterLoose()
     blurFocus()
+    ifTimerOn.value = false
+    ifTimerVisible.value = false
+    setTimeout(() => {
+      timeScene1Local.value = 10;
+      ifTimerVisible.value = true
+      ifTimerOn.value = true
+    }, 2000)
   }
 }
 
@@ -80,6 +103,13 @@ function odpowiedz4akcja() {
     store.closeWin()
     afterLoose()
     blurFocus()
+    ifTimerOn.value = false
+    ifTimerVisible.value = false
+    setTimeout(() => {
+      timeScene1Local.value = 10;
+      ifTimerVisible.value = true
+      ifTimerOn.value = true
+    }, 2000)
   }
 }
 
@@ -91,19 +121,28 @@ function endScene() {
   store.ramkPuntyY = "870px"
 }
 
+const ifTimerOn = ref(true)
+
 function startTimer() {
-  timeScene1Local.value = 12; // Reset the timer to 10 seconds
+  timeScene1Local.value = 10; // Reset the timer to 10 seconds
+
   const interval = setInterval(() => {
     if (timeScene1Local.value > 0) {
+
       timeScene1Local.value--;
+
     } else {
-      clearInterval(interval);
-      console.log("Time's up!");
-      endScene()
-      //this.closeLose(); // Call closeLose when time runs out
+      if (ifTimerOn.value === true) {
+        clearInterval(interval);
+        console.log("Time's up!");
+        endScene()
+        //this.closeLose(); // Call closeLose when time runs out
+      }
     }
   }, 1000);
+
 }
+
 
 startTimer()
 
@@ -121,17 +160,17 @@ startTimer()
     <div class="plansza-wygrana" v-if="store.isAnswerGood"></div>
     <div class="plansza-przegrana" v-if="store.isAnswerBad"></div>
     <button class="odpowiedz odpowiedz1" :class="{ active: store.is_Active1 }" @click="odpowiedz1akcja">{{ store.answerA
-      }}</button>
+    }}</button>
     <button class="odpowiedz odpowiedz2" :class="{ active: store.is_Active2 }" @click="odpowiedz2akcja">{{ store.answerB
-      }}</button>
+    }}</button>
     <button class="odpowiedz odpowiedz3" :class="{ active: store.is_Active3 }" @click="odpowiedz3akcja">{{ store.answerC
-      }}</button>
+    }}</button>
     <button class="odpowiedz odpowiedz4" :class="{ active: store.is_Active4 }" @click="odpowiedz4akcja">{{ store.answerD
-      }}</button>
+    }}</button>
 
     <button class="play-again" @click="endScene"></button>
     <div class="punktacja">
-      <p class="czas">Czas na odpowiedź: {{ timeScene1Local }}</p>
+      <p v-if="ifTimerVisible" class="czas">Czas na odpowiedź: {{ timeScene1Local }}</p>
       <!-- <TimeCounter :timerData=store.timeScene1 /> -->
     </div>
     <div class="ramka-punkty" :style="{ left: store.ramkPuntyX, top: store.ramkPuntyY }"></div>

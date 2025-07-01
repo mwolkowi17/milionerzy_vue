@@ -125,18 +125,5 @@ export const useScene1Store = defineStore("scene1", {
         this.ifChoice = true;
       }, 2000);
     },
-
-    // startTimer() {
-    //   this.timeScene1 = 10; // Reset the timer to 10 seconds
-    //   const interval = setInterval(() => {
-    //     if (this.timeScene1 > 0) {
-    //       this.timeScene1--;
-    //     } else {
-    //       clearInterval(interval);
-    //       console.log("Time's up!");
-    //       //this.closeLose(); // Call closeLose when time runs out
-    //     }
-    //   }, 1000);
-    // },
   },
 });

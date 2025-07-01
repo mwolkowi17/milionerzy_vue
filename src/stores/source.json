@@ -21,6 +21,72 @@
       "odpowiedz2": "pamiętnik2",
       "odpowiedz3": "wspomnienie2",
       "odpowiedz4": "podróż2"
+    },
+    {
+      "id": "3",
+      "answer": "4",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "770px",
+      "pytanie": "What does suvenir mean?3",
+      "odpowiedz1": "pamiątka3",
+      "odpowiedz2": "pamiętnik3",
+      "odpowiedz3": "wspomnienie3",
+      "odpowiedz4": "podróż4"
+    },
+    {
+      "id": "4",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "720px",
+      "pytanie": "What does suvenir mean?4",
+      "odpowiedz1": "pamiątka4",
+      "odpowiedz2": "pamiętnik4",
+      "odpowiedz3": "wspomnienie4",
+      "odpowiedz4": "podróż4"
+    },
+    {
+      "id": "5",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "670px",
+      "pytanie": "What does suvenir mean?2",
+      "odpowiedz1": "pamiątka2",
+      "odpowiedz2": "pamiętnik2",
+      "odpowiedz3": "wspomnienie2",
+      "odpowiedz4": "podróż2"
+    },
+    {
+      "id": "6",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "620px",
+      "pytanie": "What does suvenir mean?2",
+      "odpowiedz1": "pamiątka2",
+      "odpowiedz2": "pamiętnik2",
+      "odpowiedz3": "wspomnienie2",
+      "odpowiedz4": "podróż2"
+    },
+    {
+      "id": "7",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "820px",
+      "pytanie": "What does suvenir mean?2",
+      "odpowiedz1": "pamiątka2",
+      "odpowiedz2": "pamiętnik2",
+      "odpowiedz3": "wspomnienie2",
+      "odpowiedz4": "podróż2"
+    },
+    {
+      "id": "8",
+      "answer": "2",
+      "ramkaPositionX": "1445px",
+      "ramkaPositionY": "820px",
+      "pytanie": "What does suvenir mean?2",
+      "odpowiedz1": "pamiątka2",
+      "odpowiedz2": "pamiętnik2",
+      "odpowiedz3": "wspomnienie2",
+      "odpowiedz4": "podróż2"
     }
   ]
 }
